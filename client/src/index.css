@@ -8,9 +8,14 @@ input[type='text'],input[type='password'],input[type='email'] {
 }
 
 button{
-    @apply border bg-gray-400 w-full rounded-2xl py-2
+    @apply border bg-gray-400
 }
 
 button.primary{
-    @apply bg-primary
+    background-color: #F5385D;
+    @apply bg-primary py-2 w-full text-white rounded-2xl
+}
+
+button.login{
+    @apply bg-blue-600 
 }
