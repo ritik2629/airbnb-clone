@@ -2,30 +2,20 @@ import express from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
 import { connectDB } from "./mongodb/connect.js";
-import { userSchema } from "./mongodb/models/user.js";
-import bcrypt from "bcrypt";
+import userRoutes from './routes/userRoutes.js';
+import loginRoutes from './routes/loginRoutes.js';
 
 const app = express();
+app.use(cors());
+
 app.use(express.json());
 dotenv.config();
 
-const bcryptSalt = bcrypt.genSaltSync(10);
-
-app.use(cors());
+app.use('/register',userRoutes)
+app.use('/login',loginRoutes)
 
 app.get("/test", async (req, res) => {
   res.json({ message: "hello" });
-});
-
-app.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
-  const user = await userSchema.create({
-    name,
-    email,
-    password: bcrypt.hashSync(password, bcryptSalt),
-  });
-  //   res.json({name,email,password})
-  res.json(user);
 });
 
 const startServer = async () => {
