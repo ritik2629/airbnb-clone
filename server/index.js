@@ -4,6 +4,8 @@ import * as dotenv from "dotenv";
 import { connectDB } from "./mongodb/connect.js";
 import userRoutes from './routes/userRoutes.js';
 import loginRoutes from './routes/loginRoutes.js';
+import profileRoutes from './routes/profileRoutes.js';
+import logoutRoutes from './routes/logoutRoutes.js';
 
 const app = express();
 app.use(cors());
@@ -13,6 +15,8 @@ dotenv.config();
 
 app.use('/register',userRoutes)
 app.use('/login',loginRoutes)
+app.use('/profile',profileRoutes)
+app.use('/logout',logoutRoutes)
 
 app.get("/test", async (req, res) => {
   res.json({ message: "hello" });

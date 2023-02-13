@@ -18,7 +18,8 @@ router.route('/').post(async(req,res)=>{
         if(paswOk){
             jwt.sign({email:user.email,id:user._id},secretKey,{},(err,token)=>{
                 if(err) throw err;
-                res.cookie('token',token).json('password match')
+                res.cookie('token',token).json(user)
+                // res.cookie('token',token).json('password match')
             })
         }else{
             res.status(422).json('password incorrect')
